@@ -12,17 +12,13 @@ const HeaderContainer = styled.View`
 `;
 
 const HeaderText = styled.Text`
+    font-family: 'Pretendard-SemiBold';
     margin-top: 15px;
     font-size: 18px;
-    font-weight: bold;
 `;
 
 const HeaderIcons = styled.View`
     flex-direction: row;
-`;
-
-const IconButton = styled.TouchableOpacity`
-    margin-left: 16px;
 `;
 
 const ShopButton = ({ onPress }) => (

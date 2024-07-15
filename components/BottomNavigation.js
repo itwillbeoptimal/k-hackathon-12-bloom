@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/Ionicons";
 import styled from "styled-components/native";
-
-import MainPage from "../pages/MainPage";  // MainPage 경로 수정
+import MainPage from "../pages/MainPage";
+import DiaryPage from "../pages/DiaryPage";
+import DiaryDefault from "../assets/buttons/diary_default.svg";
+import DiaryActive from "../assets/buttons/diary_active.svg";
+import HomeDefault from "../assets/buttons/home_default.svg";
+import HomeActive from "../assets/buttons/home_active.svg";
+import MessageDefault from "../assets/buttons/messgae_default.svg";
+import MessageActive from "../assets/buttons/message_active.svg";
+import MonthlyDefault from "../assets/buttons/monthly_default.svg";
+import MonthlyActive from "../assets/buttons/monthly_active.svg";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,37 +35,37 @@ const TabLabel = styled.Text`
 const PlaceholderScreen = () => null;  // 임시 빈 화면
 
 const BottomNavigation = () => {
-  return (
-    <NavigationContainer>
+  const [activeTab, setActiveTab] = useState("Home");
+
+  const handlePress = (navigate, screen) => {
+    setActiveTab(screen);
+    navigate(screen);
+    console.log(screen);
+  };
+
+  return (<NavigationContainer>
       <Tab.Navigator
-        tabBar={props => (
-          <TabBar>
-            <TabItem onPress={() => props.navigation.navigate("Home")}>
-              <Icon name="home-outline" size={24} color="#4A90E2" />
-              <TabLabel>홈</TabLabel>
+        tabBar={props => (<TabBar>
+            <TabItem onPress={() => handlePress(props.navigation.navigate, "Home")}>
+              {activeTab === "Home" ? <HomeActive /> : <HomeDefault />}
             </TabItem>
-            <TabItem onPress={() => props.navigation.navigate("List")}>
-              <Icon name="list-outline" size={24} color="#4A90E2" />
-              <TabLabel>목록</TabLabel>
+            <TabItem onPress={() => handlePress(props.navigation.navigate, "Diary")}>
+              {activeTab === "Diary" ? <DiaryActive /> : <DiaryDefault />}
             </TabItem>
-            <TabItem onPress={() => props.navigation.navigate("Favorites")}>
-              <Icon name="heart-outline" size={24} color="#4A90E2" />
-              <TabLabel>즐겨찾기</TabLabel>
+            <TabItem onPress={() => handlePress(props.navigation.navigate, "Monthly")}>
+              {activeTab === "Monthly" ? <MonthlyActive /> : <MonthlyDefault />}
             </TabItem>
-            <TabItem onPress={() => props.navigation.navigate("Settings")}>
-              <Icon name="settings-outline" size={24} color="#4A90E2" />
-              <TabLabel>설정</TabLabel>
+            <TabItem onPress={() => handlePress(props.navigation.navigate, "Message")}>
+              {activeTab === "Message" ? <MessageActive /> : <MessageDefault />}
             </TabItem>
-          </TabBar>
-        )}
+          </TabBar>)}
       >
         <Tab.Screen name="Home" component={MainPage} options={{ headerShown: false }} />
-        <Tab.Screen name="List" component={PlaceholderScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="Favorites" component={PlaceholderScreen} options={{ headerShown: false }} />
-        <Tab.Screen name="Settings" component={PlaceholderScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Diary" component={DiaryPage} options={{ headerShown: false }} />
+        <Tab.Screen name="Monthly" component={PlaceholderScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Message" component={PlaceholderScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
-    </NavigationContainer>
-  );
+    </NavigationContainer>);
 };
 
 export default BottomNavigation;

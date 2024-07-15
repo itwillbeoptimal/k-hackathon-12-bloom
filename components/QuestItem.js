@@ -18,6 +18,7 @@ const QuestIconContainer = styled.View`
 `;
 
 const QuestTitle = styled.Text`
+    font-family: 'Pretendard-Medium';
     flex: 1;
 `;
 
@@ -27,6 +28,7 @@ const QuestCountContainer = styled.View`
 `;
 
 const QuestCount = styled.Text`
+    font-family: 'Pretendard-Medium';
     margin-horizontal: 8px;
 `;
 
@@ -46,19 +48,21 @@ const PlusButton = ({ onPress }) => (
   </TouchableOpacity>
 );
 
-const QuestItem = ({ icon, title, count }) => (
+const QuestItem = ({ icon, title, count, hasCounter = false }) => (
   <QuestItemContainer>
-    <View style={{width:45, alignItems:'center'}}>
+    <View style={{ width: 45, alignItems: 'center' }}>
       <QuestIconContainer>
         {icon}
       </QuestIconContainer>
     </View>
     <QuestTitle>{title}</QuestTitle>
-    <QuestCountContainer>
-      <MinusButton />
-      <QuestCount>{count}</QuestCount>
-      <PlusButton />
-    </QuestCountContainer>
+    {hasCounter && (
+      <QuestCountContainer>
+        <MinusButton />
+        <QuestCount>{count}</QuestCount>
+        <PlusButton />
+      </QuestCountContainer>
+    )}
   </QuestItemContainer>
 );
 
