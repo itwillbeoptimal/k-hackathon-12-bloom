@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import styled from "styled-components/native";
 import MainPage from "../pages/MainPage";
 import DiaryPage from "../pages/DiaryPage";
+import MonthlyReportPage from "../pages/MonthlyReportPage"
 import DiaryDefault from "../assets/buttons/diary_default.svg";
 import DiaryActive from "../assets/buttons/diary_active.svg";
 import HomeDefault from "../assets/buttons/home_default.svg";
@@ -62,7 +63,7 @@ const BottomNavigation = () => {
       >
         <Tab.Screen name="Home" component={MainPage} options={{ headerShown: false }} />
         <Tab.Screen name="Diary" component={DiaryPage} options={{ headerShown: false }} />
-        <Tab.Screen name="Monthly" component={PlaceholderScreen} options={{ headerShown: false }} />
+        <Tab.Screen name="Monthly" component={MonthlyReportPage} options={{ headerShown: false }} />
         <Tab.Screen name="Message" component={PlaceholderScreen} options={{ headerShown: false }} />
       </Tab.Navigator>
     </NavigationContainer>);

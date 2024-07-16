@@ -13,7 +13,6 @@ const HeaderContainer = styled.View`
 
 const HeaderText = styled.Text`
     font-family: 'Pretendard-SemiBold';
-    margin-top: 15px;
     font-size: 18px;
 `;
 
@@ -23,7 +22,7 @@ const HeaderIcons = styled.View`
 
 const ShopButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
-    <View style={{ marginRight: 15, marginTop: 15 }}>
+    <View style={{ marginRight: 15 }}>
       <ShopIcon />
     </View>
   </TouchableOpacity>
@@ -31,7 +30,7 @@ const ShopButton = ({ onPress }) => (
 
 const UserInfoButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
-    <View style={{ marginTop: 15 }}>
+    <View>
       <UserInfoIcon />
     </View>
   </TouchableOpacity>

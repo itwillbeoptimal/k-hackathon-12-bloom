@@ -7,11 +7,13 @@ import QuestItem from "../components/QuestItem";
 import WaterIcon from "../assets/icons/quest_icons/water.svg";
 import StretchIcon from "../assets/icons/quest_icons/stretch.svg";
 import WalkIcon from "../assets/icons/quest_icons/walk.svg";
+import PrioritizeIcon from "../assets/icons/quest_icons/prioritize.svg";
 import TulipIcon from "../assets/icons/flower_icons/tulip.svg";
 
 const Container = styled(SafeAreaView)`
     flex: 1;
     background-color: #F5F5F5;
+    padding: 10px;
 `;
 
 const QuestList = styled.View`
@@ -25,7 +27,8 @@ const QuestListTitle = styled.Text`
 `;
 
 const MainPage = () => {
-  return (<Container>
+  return (
+    <Container>
       <StatusBar barStyle="dark-content" />
       <ScrollView>
         <Header />
@@ -37,6 +40,7 @@ const MainPage = () => {
           <QuestItem icon={<WaterIcon />} title="물 여덟 잔 마시기" count={6} hasCounter={true} />
           <QuestItem icon={<StretchIcon />} title="스트레칭 세 번 하기" count={3} hasCounter={true} />
           <QuestItem icon={<WalkIcon />} title="3,000 걸음 이상 걷기" count={0} />
+          <QuestItem icon={<PrioritizeIcon />} title="할 일의 우선 순위 정하기" count={0} />
         </QuestList>
       </ScrollView>
     </Container>);
