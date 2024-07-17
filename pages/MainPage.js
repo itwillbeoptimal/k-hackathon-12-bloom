@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { View, SafeAreaView, StatusBar, ScrollView } from "react-native";
-import Header from "../components/Header";
+import MainHeader from "../components/MainHeader";
 import Progress from "../components/Progress";
 import QuestItem from "../components/QuestItem";
 import WaterIcon from "../assets/icons/quest_icons/water.svg";
@@ -33,7 +33,7 @@ const MainPage = () => {
       <Container>
         <StatusBar barStyle="dark-content" />
         <ScrollView>
-          <Header />
+          <MainHeader />
           <Progress todayFlowerIcon={<TulipIcon />} />
           <QuestList>
             <QuestListTitle>

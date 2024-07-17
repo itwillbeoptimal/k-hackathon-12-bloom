@@ -24,6 +24,7 @@
 		C7019890DBA74D63984FB2AC /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6983E59CC8FD463B841AD525 /* Pretendard-Bold.ttf */; };
 		D9B00E1F70B34B07A0A6D8D0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DCE28A83AE01804797CC8727 /* PrivacyInfo.xcprivacy */; };
 		EA24BF5CF3BC4CBB8F3B15AB /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3C93B705BE647E099A97BBC /* Pretendard-SemiBold.ttf */; };
+		100A1F1432814D9EA1BD495A /* a시월구일수필2.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1BDD4CDBDCC444E388EA739F /* a시월구일수필2.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		DCE28A83AE01804797CC8727 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = bloom/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F5BB56C0A61441A19778CCFC /* Pretendard-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Pretendard-ExtraLight.ttf"; path = "../assets/fonts/Pretendard-ExtraLight.ttf"; sourceTree = "<group>"; };
+		1BDD4CDBDCC444E388EA739F /* a시월구일수필2.otf */ = {isa = PBXFileReference; name = "a시월구일수필2.otf"; path = "../assets/fonts/a시월구일수필2.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				7294583B4E764948BBFB56B6 /* Pretendard-Regular.ttf */,
 				C3C93B705BE647E099A97BBC /* Pretendard-SemiBold.ttf */,
 				2888A3EEDCC64C9CBF1D05F2 /* Pretendard-Thin.ttf */,
+				1BDD4CDBDCC444E388EA739F /* a시월구일수필2.otf */,
 			);
 			name = Resources;
 			path = "";
@@ -294,6 +297,7 @@
 				EA24BF5CF3BC4CBB8F3B15AB /* Pretendard-SemiBold.ttf in Resources */,
 				9231E9130199472AA09E9FC0 /* Pretendard-Thin.ttf in Resources */,
 				D9B00E1F70B34B07A0A6D8D0 /* PrivacyInfo.xcprivacy in Resources */,
+				100A1F1432814D9EA1BD495A /* a시월구일수필2.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

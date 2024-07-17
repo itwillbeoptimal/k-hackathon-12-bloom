@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity, View } from "react-native";
-import ShopIcon from "../assets/buttons/shop.svg";
-import UserInfoIcon from "../assets/buttons/user_info.svg";
+import CalendarIcon from "../assets/buttons/calendar.svg";
 
 const HeaderContainer = styled.View`
     flex-direction: row;
@@ -21,30 +20,21 @@ const HeaderIcons = styled.View`
     flex-direction: row;
 `;
 
-const ShopButton = ({ onPress }) => (
+const CalendarButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
     <View style={{ marginRight: 15 }}>
-      <ShopIcon />
+      <CalendarIcon />
     </View>
   </TouchableOpacity>
 );
 
-const UserInfoButton = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
-    <View>
-      <UserInfoIcon />
-    </View>
-  </TouchableOpacity>
-);
-
-const Header = () => (
+const DiaryHeader = ({ date }) => (
   <HeaderContainer>
-    <HeaderText>OO님, 안녕하세요!</HeaderText>
+    <HeaderText>{date}</HeaderText>
     <HeaderIcons>
-      <ShopButton />
-      <UserInfoButton />
+      <CalendarButton />
     </HeaderIcons>
   </HeaderContainer>
 );
 
-export default Header;
+export default DiaryHeader;
