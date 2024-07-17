@@ -12,6 +12,7 @@ const HeaderContainer = styled.View`
 `;
 
 const HeaderText = styled.Text`
+    color: #3F3F3F;
     font-family: 'Pretendard-SemiBold';
     font-size: 18px;
 `;

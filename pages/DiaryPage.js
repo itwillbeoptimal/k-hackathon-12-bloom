@@ -8,6 +8,7 @@ const Container = styled(SafeAreaView)`
 `;
 
 const TempText = styled.Text`
+    color: #3F3F3F;
     font-family: 'Pretendard-SemiBold';
     font-size: 16px;
     margin-bottom: 16px;

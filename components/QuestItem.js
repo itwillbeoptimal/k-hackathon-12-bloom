@@ -18,6 +18,7 @@ const QuestIconContainer = styled.View`
 `;
 
 const QuestTitle = styled.Text`
+    color: #3F3F3F;
     font-family: 'Pretendard-Medium';
     flex: 1;
 `;
@@ -28,6 +29,7 @@ const QuestCountContainer = styled.View`
 `;
 
 const QuestCount = styled.Text`
+    color: #3F3F3F;
     font-family: 'Pretendard-Medium';
     margin-horizontal: 8px;
 `;
