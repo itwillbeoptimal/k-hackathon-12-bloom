@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { SafeAreaView, StatusBar, ScrollView } from "react-native";
+import { View, SafeAreaView, StatusBar, ScrollView } from "react-native";
 import Header from "../components/Header";
 import Progress from "../components/Progress";
 import QuestItem from "../components/QuestItem";
@@ -10,7 +10,7 @@ import WalkIcon from "../assets/icons/quest_icons/walk.svg";
 import PrioritizeIcon from "../assets/icons/quest_icons/prioritize.svg";
 import TulipIcon from "../assets/icons/flower_icons/tulip.svg";
 
-const Container = styled(SafeAreaView)`
+const Container = styled(View)`
     flex: 1;
     background-color: #F5F5F5;
     padding: 10px;
@@ -28,22 +28,24 @@ const QuestListTitle = styled.Text`
 
 const MainPage = () => {
   return (
-    <Container>
-      <StatusBar barStyle="dark-content" />
-      <ScrollView>
-        <Header />
-        <Progress todayFlowerIcon={<TulipIcon />} />
-        <QuestList>
-          <QuestListTitle>
-            데일리 퀘스트
-          </QuestListTitle>
-          <QuestItem icon={<WaterIcon />} title="물 여덟 잔 마시기" count={6} hasCounter={true} />
-          <QuestItem icon={<StretchIcon />} title="스트레칭 세 번 하기" count={3} hasCounter={true} />
-          <QuestItem icon={<WalkIcon />} title="3,000 걸음 이상 걷기" count={0} />
-          <QuestItem icon={<PrioritizeIcon />} title="할 일의 우선 순위 정하기" count={0} />
-        </QuestList>
-      </ScrollView>
-    </Container>);
+    <SafeAreaView style={{ flex: 1 }}>
+      <Container>
+        <StatusBar barStyle="dark-content" />
+        <ScrollView>
+          <Header />
+          <Progress todayFlowerIcon={<TulipIcon />} />
+          <QuestList>
+            <QuestListTitle>
+              데일리 퀘스트
+            </QuestListTitle>
+            <QuestItem icon={<WaterIcon />} title="물 여덟 잔 마시기" count={6} hasCounter={true} />
+            <QuestItem icon={<StretchIcon />} title="스트레칭 세 번 하기" count={3} hasCounter={true} />
+            <QuestItem icon={<WalkIcon />} title="3,000 걸음 이상 걷기" count={0} />
+            <QuestItem icon={<PrioritizeIcon />} title="할 일의 우선 순위 정하기" count={0} />
+          </QuestList>
+        </ScrollView>
+      </Container>
+    </SafeAreaView>);
 };
 
 export default MainPage;
