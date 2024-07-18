@@ -20,7 +20,7 @@ const QuestList = styled.View`
     padding: 16px;
 `;
 
-const QuestListTitle = styled.Text`
+const MenuTitle = styled.Text`
     color: #3F3F3F;
     font-family: 'Pretendard-SemiBold';
     font-size: 16px;
@@ -36,9 +36,9 @@ const MainPage = () => {
           <MainHeader />
           <Progress todayFlowerIcon={<TulipIcon />} />
           <QuestList>
-            <QuestListTitle>
+            <MenuTitle>
               데일리 퀘스트
-            </QuestListTitle>
+            </MenuTitle>
             <QuestItem icon={<WaterIcon />} title="물 여덟 잔 마시기" count={6} hasCounter={true} />
             <QuestItem icon={<StretchIcon />} title="스트레칭 세 번 하기" count={3} hasCounter={true} />
             <QuestItem icon={<WalkIcon />} title="3,000 걸음 이상 걷기" count={0} />

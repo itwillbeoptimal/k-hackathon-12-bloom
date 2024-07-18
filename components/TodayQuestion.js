@@ -20,19 +20,23 @@ const WriteButton = ({ onPress }) => (
   </TouchableOpacity>
 );
 
-const TodayQuestion = ({ questionDetail }) => (<ScrollView horizontal showsHorizontalScrollIndicator={false}>
-  <TodayQuestionContainer>
-    <View style={{ padding: 25 }}>
-      <Text style={{ fontFamily: "Pretendard-Bold", fontSize: 15, color: "#5494DA", alignSelf: "flex-start" }}>오늘의
-        질문</Text>
-      <Text style={{
-        fontFamily: "KoreanSWGIS2R", fontSize: 18, color: "#585A64", textAlign: "center", lineHeight: 25,
-        letterSpacing: -1, marginTop: 25, alignSelf: "center",
-      }}>{questionDetail}</Text>
-      <WriteButton />
-    </View>
-  </TodayQuestionContainer>
-  <TodayQuestionContainer />
-</ScrollView>);
+const TodayQuestion = ({ questionDetail }) => (
+  <View>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <TodayQuestionContainer>
+        <View style={{ padding: 25 }}>
+          <Text style={{ fontFamily: "Pretendard-Bold", fontSize: 15, color: "#5494DA", alignSelf: "flex-start" }}>오늘의
+            질문</Text>
+          <Text style={{
+            fontFamily: "Pretendard-Regular", fontSize: 18, color: "#585A64", textAlign: "center", lineHeight: 25,
+            letterSpacing: -1, marginTop: 25, alignSelf: "center",
+          }}>{questionDetail}</Text>
+          <WriteButton />
+        </View>
+      </TodayQuestionContainer>
+      <TodayQuestionContainer />
+    </ScrollView>
+  </View>
+);
 
 export default TodayQuestion;
