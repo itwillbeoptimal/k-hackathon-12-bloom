@@ -6,8 +6,8 @@ import LinearGradient from "react-native-linear-gradient";
 import Sprout2Vector from "../assets/vectors/sprout2.svg";
 
 const CurrentFlowerContainer = styled.View`
-    width: 165px;
-    height: 165px;
+    width: 48%;
+    aspect-ratio: 1/1;
     padding: 10px;
     flex-direction: column;
     align-items: center;
@@ -57,7 +57,7 @@ const ProgressText = styled.Text`
 `;
 
 const Progress = ({ todayFlowerIcon }) => (
-  <ProgressContainer>
+  <ProgressContainer style={{justifyContent: "space-between"}}>
     <CurrentFlowerContainer>
       <CurrentFlowerHeader>
         <View style={{ flex: 1, alignItems: "flex-start" }}>
@@ -81,14 +81,13 @@ const Progress = ({ todayFlowerIcon }) => (
       tintColor="#3354F4"
       backgroundColor="#e0e0e0"
       rotation={0}
-
     >
       {() => (
         <>
           <ProgressText style={{ color: "#3F3F3F" }}>
             데일리 퀘스트{"\n"}완료 보상
           </ProgressText>
-          <ProgressText style={{ marginTop: 2, fontFamily: 'SpoqaHanSansNeo-Medium', fontSize: 24, color: "#3F3F3F" }}>
+          <ProgressText style={{ marginTop: 4, fontFamily: 'SpoqaHanSansNeo-Medium', fontSize: 24, color: "#3F3F3F" }}>
             1/5
           </ProgressText>
         </>
