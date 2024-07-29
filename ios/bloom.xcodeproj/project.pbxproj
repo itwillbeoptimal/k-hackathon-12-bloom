@@ -8,19 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* bloomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* bloomTests.m */; };
+		0A215F8A75284C4BA59ED726 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-bloom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-bloom.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2F458042FBBC4A1293FE0D13 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2842C88F86AC489F9DA6C652 /* SpoqaHanSansNeo-Bold.ttf */; };
+		568B616B403E471984A7D43C /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-bloom-bloomTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-bloom-bloomTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		D9B00E1F70B34B07A0A6D8D0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DCE28A83AE01804797CC8727 /* PrivacyInfo.xcprivacy */; };
-		2F458042FBBC4A1293FE0D13 /* SpoqaHanSansNeo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2842C88F86AC489F9DA6C652 /* SpoqaHanSansNeo-Bold.ttf */; };
-		E8CAE9308AD14EDC82A02CDE /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E93639AF9014D2A82728597 /* SpoqaHanSansNeo-Light.ttf */; };
 		CA41BEF52DBF4640B34632C5 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D4FE4DE3A32408BA37D9B29 /* SpoqaHanSansNeo-Medium.ttf */; };
-		0A215F8A75284C4BA59ED726 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */; };
-		568B616B403E471984A7D43C /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */; };
+		D9B00E1F70B34B07A0A6D8D0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DCE28A83AE01804797CC8727 /* PrivacyInfo.xcprivacy */; };
 		E109B8FDD4FE47AFA0DDC949 /* GowunDodum-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D71A01F423C40E6B9BDFBD5 /* GowunDodum-Regular.ttf */; };
+		E8CAE9308AD14EDC82A02CDE /* SpoqaHanSansNeo-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E93639AF9014D2A82728597 /* SpoqaHanSansNeo-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,8 @@
 		00E356EE1AD99517003FC87E /* bloomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bloomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* bloomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bloomTests.m; sourceTree = "<group>"; };
+		05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Regular.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; };
+		0D71A01F423C40E6B9BDFBD5 /* GowunDodum-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "GowunDodum-Regular.ttf"; path = "../assets/fonts/GowunDodum-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* bloom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bloom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = bloom/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = bloom/AppDelegate.mm; sourceTree = "<group>"; };
@@ -45,20 +47,18 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bloom/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = bloom/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-bloom-bloomTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bloom-bloomTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2842C88F86AC489F9DA6C652 /* SpoqaHanSansNeo-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Bold.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Bold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-bloom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bloom.debug.xcconfig"; path = "Target Support Files/Pods-bloom/Pods-bloom.debug.xcconfig"; sourceTree = "<group>"; };
+		4E93639AF9014D2A82728597 /* SpoqaHanSansNeo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Light.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Light.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-bloom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bloom.release.xcconfig"; path = "Target Support Files/Pods-bloom/Pods-bloom.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-bloom-bloomTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bloom-bloomTests.debug.xcconfig"; path = "Target Support Files/Pods-bloom-bloomTests/Pods-bloom-bloomTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-bloom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bloom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4FE4DE3A32408BA37D9B29 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Medium.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = bloom/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-bloom-bloomTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bloom-bloomTests.release.xcconfig"; path = "Target Support Files/Pods-bloom-bloomTests/Pods-bloom-bloomTests.release.xcconfig"; sourceTree = "<group>"; };
 		DCE28A83AE01804797CC8727 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = bloom/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		2842C88F86AC489F9DA6C652 /* SpoqaHanSansNeo-Bold.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Bold.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4E93639AF9014D2A82728597 /* SpoqaHanSansNeo-Light.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Light.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6D4FE4DE3A32408BA37D9B29 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Medium.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Regular.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Thin.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0D71A01F423C40E6B9BDFBD5 /* GowunDodum-Regular.ttf */ = {isa = PBXFileReference; name = "GowunDodum-Regular.ttf"; path = "../assets/fonts/GowunDodum-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SpoqaHanSansNeo-Thin.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

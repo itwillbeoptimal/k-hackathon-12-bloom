@@ -76,13 +76,18 @@ const DiaryPage = () => {
     return `${year}. ${month}. ${day}. (${dayOfWeek})`;
   };
 
+  const TIME_ZONE = 9 * 60 * 60 * 1000;
   const [currentDate, setCurrentDate] = useState(new Date());
   const [doneTasks, setDoneTasks] = useState([]);
   const [todayQuestion, setTodayQuestion] = useState('');
 
   const fetchTasks = async (date) => {
-    const localDate = date.toLocaleDateString('en-CA');
+    let offset = date.getTimezoneOffset() * 60000;
+    let dateOffset = new Date(date.getTime() - offset);
+    const localDate = dateOffset.toISOString().split('T')[0];
+    console.log(`Fetching tasks for date: ${localDate}`);
     if (process.env.NODE_ENV === 'development') {
+      console.log('Using dummy data for tasks');
       setDoneTasks(dummyTasks[localDate] || []);
     } else {
       try {
@@ -96,8 +101,12 @@ const DiaryPage = () => {
   };
 
   const fetchQuestion = async (date) => {
-    const localDate = date.toLocaleDateString('en-CA');
+    let offset = date.getTimezoneOffset() * 60000;
+    let dateOffset = new Date(date.getTime() - offset);
+    const localDate = dateOffset.toISOString().split('T')[0];
+    console.log(`Fetching question for date: ${localDate}`);
     if (process.env.NODE_ENV === 'development') {
+      console.log('Using dummy data for question');
       setTodayQuestion(dummyQuestions[localDate] || "오늘의 질문이 없습니다.");
     } else {
       try {
