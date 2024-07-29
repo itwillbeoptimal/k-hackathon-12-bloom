@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity, View } from "react-native";
 import CalendarIcon from "../assets/buttons/calendar.svg";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const HeaderContainer = styled.View`
     flex-direction: row;
@@ -29,13 +30,31 @@ const CalendarButton = ({ onPress }) => (
   </TouchableOpacity>
 );
 
-const DiaryHeader = ({ date }) => (
-  <HeaderContainer>
-    <HeaderText>{date}</HeaderText>
-    <HeaderIcons>
-      <CalendarButton />
-    </HeaderIcons>
-  </HeaderContainer>
-);
+const DiaryHeader = ({ date, setDate }) => {
+  const [showPicker, setShowPicker] = React.useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || new Date();
+    setShowPicker(false);
+    setDate(currentDate);
+  };
+
+  return (
+    <HeaderContainer>
+      <HeaderText>{date}</HeaderText>
+      <HeaderIcons>
+        <CalendarButton onPress={() => setShowPicker(true)} />
+        {showPicker && (
+          <DateTimePicker
+            value={new Date()}
+            mode="date"
+            display="default"
+            onChange={onChange}
+          />
+        )}
+      </HeaderIcons>
+    </HeaderContainer>
+  );
+};
 
 export default DiaryHeader;
