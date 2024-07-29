@@ -13,14 +13,15 @@ const QuestItemContainer = styled.TouchableOpacity`
 
 const TaskIcon = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Medium';
+    font-family: 'SpoqaHanSansNeo-Medium';
     flex: 1;
     text-align: center;
 `;
 
 const TaskTitle = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Medium';
+    font-family: 'SpoqaHanSansNeo-Regular';
+    letter-spacing: -0.3px;
     flex: 10;
 `;
 

@@ -22,7 +22,7 @@ const QuestList = styled.View`
 
 const MenuTitle = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-SemiBold';
+    font-family: 'SpoqaHanSansNeo-Medium';
     font-size: 16px;
     margin-bottom: 16px;
 `;

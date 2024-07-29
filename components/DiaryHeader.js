@@ -12,8 +12,9 @@ const HeaderContainer = styled.View`
 
 const HeaderText = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-SemiBold';
-    font-size: 18px;
+    font-family: 'SpoqaHanSansNeo-Medium';
+    letter-spacing: -0.3px;
+    font-size: 20px;
 `;
 
 const HeaderIcons = styled.View`
@@ -22,7 +23,7 @@ const HeaderIcons = styled.View`
 
 const CalendarButton = ({ onPress }) => (
   <TouchableOpacity onPress={onPress}>
-    <View style={{ marginRight: 15 }}>
+    <View style={{ marginRight: 0 }}>
       <CalendarIcon />
     </View>
   </TouchableOpacity>

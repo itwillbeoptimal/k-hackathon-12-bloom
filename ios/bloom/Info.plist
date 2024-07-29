@@ -49,16 +49,11 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Pretendard-Black.ttf</string>
-		<string>Pretendard-Bold.ttf</string>
-		<string>Pretendard-ExtraBold.ttf</string>
-		<string>Pretendard-ExtraLight.ttf</string>
-		<string>Pretendard-Light.ttf</string>
-		<string>Pretendard-Medium.ttf</string>
-		<string>Pretendard-Regular.ttf</string>
-		<string>Pretendard-SemiBold.ttf</string>
-		<string>Pretendard-Thin.ttf</string>
-		<string>a시월구일수필2.otf</string>
+		<string>SpoqaHanSansNeo-Bold.ttf</string>
+		<string>SpoqaHanSansNeo-Light.ttf</string>
+		<string>SpoqaHanSansNeo-Medium.ttf</string>
+		<string>SpoqaHanSansNeo-Regular.ttf</string>
+		<string>SpoqaHanSansNeo-Thin.ttf</string>
 	</array>
 </dict>
 </plist>

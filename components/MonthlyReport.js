@@ -117,7 +117,7 @@ const ArrowButton = styled.TouchableOpacity`
 
 const MonthText = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Bold';
+    font-family: 'SpoqaHanSansNeo-Medium';
     font-size: 28px;
     color: #333;
     margin-right: 10px;
@@ -125,7 +125,7 @@ const MonthText = styled.Text`
 
 const YearText = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Light';
+    font-family: 'SpoqaHanSansNeo-Light';
     font-size: 28px;
 `;
 
@@ -137,7 +137,7 @@ const WeekDaysContainer = styled.View`
 
 const WeekDayText = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Medium';
+    font-family: 'SpoqaHanSansNeo-Regular';
     width: 14.28%;
     text-align: center;
 `;
@@ -157,7 +157,7 @@ const DayContainer = styled.View`
 
 const DayText = styled.Text`
     color: #3F3F3F;
-    font-family: ${props => props.isToday ? 'Pretendard-SemiBold' : 'Pretendard-Light'};
+    font-family: ${props => props.isToday ? 'SpoqaHanSansNeo-Medium' : 'SpoqaHanSansNeo-Light'};
     font-size: 16px;
     margin-bottom: 5px;
     color: ${props => props.isToday ? "#0066cc" : "#000"};

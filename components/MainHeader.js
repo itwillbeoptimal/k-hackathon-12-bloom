@@ -13,8 +13,9 @@ const HeaderContainer = styled.View`
 
 const HeaderText = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-SemiBold';
-    font-size: 18px;
+    font-family: 'SpoqaHanSansNeo-Medium';
+    font-size: 20px;
+    letter-spacing: -0.3px;
 `;
 
 const HeaderIcons = styled.View`

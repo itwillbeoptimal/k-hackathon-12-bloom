@@ -13,7 +13,7 @@ const Container = styled(View)`
 
 const MenuTitle = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-SemiBold';
+    font-family: 'SpoqaHanSansNeo-Medium';
     font-size: 16px;
     margin-bottom: 16px;
 `;
@@ -34,14 +34,15 @@ const AddTaskButton = styled.TouchableOpacity`
 
 const AddTaskIcon = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Medium';
+    font-family: 'SpoqaHanSansNeo-Regular';
     flex: 1;
     text-align: center;
 `;
 
 const AddTaskTitle = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-Medium';
+    font-family: 'SpoqaHanSansNeo-Regular';
+    letter-spacing: -0.3px;
     flex: 10;
 `;
 

@@ -51,7 +51,7 @@ const ProgressFill = styled(LinearGradient).attrs(props => ({
 
 const ProgressText = styled.Text`
     color: #3F3F3F;
-    font-family: 'Pretendard-SemiBold';
+    font-family: 'SpoqaHanSansNeo-Regular';
     text-align: center;
     font-size: 12px;
 `;
@@ -88,7 +88,7 @@ const Progress = ({ todayFlowerIcon }) => (
           <ProgressText style={{ color: "#3F3F3F" }}>
             데일리 퀘스트{"\n"}완료 보상
           </ProgressText>
-          <ProgressText style={{ marginTop: 2, fontWeight: "bold", fontSize: 24, color: "#3F3F3F" }}>
+          <ProgressText style={{ marginTop: 2, fontFamily: 'SpoqaHanSansNeo-Medium', fontSize: 24, color: "#3F3F3F" }}>
             1/5
           </ProgressText>
         </>
