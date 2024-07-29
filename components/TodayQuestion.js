@@ -25,10 +25,10 @@ const TodayQuestion = ({ questionDetail }) => (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <TodayQuestionContainer>
         <View style={{ padding: 25 }}>
-          <Text style={{ fontFamily: "Pretendard-Bold", fontSize: 15, color: "#5494DA", alignSelf: "flex-start" }}>오늘의
+          <Text style={{ fontFamily: "SpoqaHanSansNeo-Medium", fontSize: 15, color: "#5494DA", letterSpacing: -0.3, alignSelf: "flex-start" }}>오늘의
             질문</Text>
           <Text style={{
-            fontFamily: "Pretendard-Regular", fontSize: 18, color: "#585A64", textAlign: "center", lineHeight: 25,
+            fontFamily: "GowunDodum-Regular", fontSize: 18, color: "#585A64", textAlign: "center", lineHeight: 25,
             letterSpacing: -1, marginTop: 25, alignSelf: "center",
           }}>{questionDetail}</Text>
           <WriteButton />

@@ -2,6 +2,10 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/GowunDodum-Regular.ttf",
+      "sha1": "847dceef1abac41c09bd0001f37838e6a38be537"
+    },
+    {
       "path": "assets/fonts/SpoqaHanSansNeo-Bold.ttf",
       "sha1": "cb7dc0e5047cf54e5c2a201d02256a6357ffd36f"
     },

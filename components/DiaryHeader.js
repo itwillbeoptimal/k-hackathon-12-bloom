@@ -33,10 +33,17 @@ const CalendarButton = ({ onPress }) => (
 const DiaryHeader = ({ date, setDate }) => {
   const [showPicker, setShowPicker] = React.useState(false);
 
+  const currentDate = new Date();
+
   const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || new Date();
+    const date = selectedDate || currentDate;
     setShowPicker(false);
-    setDate(currentDate);
+
+    if (date > currentDate) {
+      alert('미래 날짜는 선택할 수 없습니다.');
+    } else {
+      setDate(date);
+    }
   };
 
   return (
@@ -46,10 +53,11 @@ const DiaryHeader = ({ date, setDate }) => {
         <CalendarButton onPress={() => setShowPicker(true)} />
         {showPicker && (
           <DateTimePicker
-            value={new Date()}
+            value={currentDate}
             mode="date"
             display="default"
             onChange={onChange}
+            maximumDate={currentDate}
           />
         )}
       </HeaderIcons>

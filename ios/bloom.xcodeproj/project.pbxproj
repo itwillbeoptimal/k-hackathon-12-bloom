@@ -20,6 +20,7 @@
 		CA41BEF52DBF4640B34632C5 /* SpoqaHanSansNeo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D4FE4DE3A32408BA37D9B29 /* SpoqaHanSansNeo-Medium.ttf */; };
 		0A215F8A75284C4BA59ED726 /* SpoqaHanSansNeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */; };
 		568B616B403E471984A7D43C /* SpoqaHanSansNeo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */; };
+		E109B8FDD4FE47AFA0DDC949 /* GowunDodum-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D71A01F423C40E6B9BDFBD5 /* GowunDodum-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		6D4FE4DE3A32408BA37D9B29 /* SpoqaHanSansNeo-Medium.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Medium.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Regular.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */ = {isa = PBXFileReference; name = "SpoqaHanSansNeo-Thin.ttf"; path = "../assets/fonts/SpoqaHanSansNeo-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0D71A01F423C40E6B9BDFBD5 /* GowunDodum-Regular.ttf */ = {isa = PBXFileReference; name = "GowunDodum-Regular.ttf"; path = "../assets/fonts/GowunDodum-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				6D4FE4DE3A32408BA37D9B29 /* SpoqaHanSansNeo-Medium.ttf */,
 				05B3826D018B4092B0F4DE39 /* SpoqaHanSansNeo-Regular.ttf */,
 				FDDC3BE0E96244A687492AE6 /* SpoqaHanSansNeo-Thin.ttf */,
+				0D71A01F423C40E6B9BDFBD5 /* GowunDodum-Regular.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -278,6 +281,7 @@
 				CA41BEF52DBF4640B34632C5 /* SpoqaHanSansNeo-Medium.ttf in Resources */,
 				0A215F8A75284C4BA59ED726 /* SpoqaHanSansNeo-Regular.ttf in Resources */,
 				568B616B403E471984A7D43C /* SpoqaHanSansNeo-Thin.ttf in Resources */,
+				E109B8FDD4FE47AFA0DDC949 /* GowunDodum-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
