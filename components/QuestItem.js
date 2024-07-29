@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import MinusIcon from "../assets/buttons/quest_minus_default.svg";
@@ -51,22 +51,38 @@ const PlusButton = ({ onPress }) => (
   </TouchableOpacity>
 );
 
-const QuestItem = ({ icon, title, count, hasCounter = false }) => (
-  <QuestItemContainer>
-    <View style={{ width: 45, alignItems: 'center' }}>
-      <QuestIconContainer>
-        {icon}
-      </QuestIconContainer>
-    </View>
-    <QuestTitle>{title}</QuestTitle>
-    {hasCounter && (
-      <QuestCountContainer>
-        <MinusButton />
-        <QuestCount>{count}</QuestCount>
-        <PlusButton />
-      </QuestCountContainer>
-    )}
-  </QuestItemContainer>
-);
+const QuestItem = ({ icon, title, initialCount, hasCounter = false }) => {
+  const [count, setCount] = useState(initialCount);
+
+  const handleDecrease = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    if (count < initialCount) {
+      setCount(count + 1);
+    }
+  };
+
+  return (
+    <QuestItemContainer>
+      <View style={{ width: 45, alignItems: 'center' }}>
+        <QuestIconContainer>
+          {icon}
+        </QuestIconContainer>
+      </View>
+      <QuestTitle>{title}</QuestTitle>
+      {hasCounter && (
+        <QuestCountContainer>
+          <MinusButton onPress={handleDecrease} />
+          <QuestCount>{count}</QuestCount>
+          <PlusButton onPress={handleIncrease} />
+        </QuestCountContainer>
+      )}
+    </QuestItemContainer>
+  );
+};
 
 export default QuestItem;

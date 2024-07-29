@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { View, SafeAreaView, StatusBar, ScrollView } from "react-native";
 import MainHeader from "../components/MainHeader";
@@ -28,6 +28,23 @@ const MenuTitle = styled.Text`
 `;
 
 const MainPage = () => {
+  const [quests, setQuests] = useState([]);
+
+  useEffect(() => {
+    const fetchQuests = async () => {
+      // 여기에 백엔드 API 호출
+      const dummyData = [
+        { id: 1, icon: <WaterIcon />, title: "물 여덟 잔 마시기", count: 8, hasCounter: true },
+        { id: 2, icon: <StretchIcon />, title: "스트레칭 세 번 하기", count: 3, hasCounter: true },
+        { id: 3, icon: <WalkIcon />, title: "3,000 걸음 이상 걷기", count: -1, hasCounter: false },
+        { id: 4, icon: <PrioritizeIcon />, title: "할 일의 우선 순위 정하기", count: -1, hasCounter: false },
+      ];
+      setQuests(dummyData);
+    };
+
+    fetchQuests();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Container>
@@ -39,14 +56,20 @@ const MainPage = () => {
             <MenuTitle>
               데일리 퀘스트
             </MenuTitle>
-            <QuestItem icon={<WaterIcon />} title="물 여덟 잔 마시기" count={6} hasCounter={true} />
-            <QuestItem icon={<StretchIcon />} title="스트레칭 세 번 하기" count={3} hasCounter={true} />
-            <QuestItem icon={<WalkIcon />} title="3,000 걸음 이상 걷기" count={0} />
-            <QuestItem icon={<PrioritizeIcon />} title="할 일의 우선 순위 정하기" count={0} />
+            {quests.map(quest => (
+              <QuestItem
+                key={quest.id}
+                icon={quest.icon}
+                title={quest.title}
+                initialCount={quest.count}
+                hasCounter={quest.hasCounter}
+              />
+            ))}
           </QuestList>
         </ScrollView>
       </Container>
-    </SafeAreaView>);
+    </SafeAreaView>
+  );
 };
 
 export default MainPage;
