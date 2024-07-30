@@ -36,7 +36,7 @@ const Input = styled.TextInput`
 
 const SaveButton = styled.TouchableOpacity`
     background-color: #007AFF;
-    padding: 8px 10px;
+    padding: 7px 12px;
     border-radius: 20px;
     margin-left: 5px;
 `;
@@ -44,7 +44,7 @@ const SaveButton = styled.TouchableOpacity`
 const DeleteButton = styled.TouchableOpacity`
     background-color: #fff;
     border: 1px solid #AEAEB2;
-    padding: 7px 9px;
+    padding: 6px 11px;
     border-radius: 20px;
 `;
 
@@ -82,8 +82,7 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
     }
 
     const options = {
-      mediaType: "photo",
-      quality: 1,
+      mediaType: "photo", quality: 1,
     };
 
     launchImageLibrary(options, (response) => {
@@ -99,16 +98,11 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
   };
 
   const handleDeleteImage = (uri) => {
-    Alert.alert("사진 삭제", "정말로 이 사진을 삭제하시겠습니까?", [
-      { text: "취소", style: "cancel" },
-      {
-        text: "삭제",
-        onPress: () => {
-          setImages(images.filter((image) => image !== uri));
-        },
-        style: "destructive",
-      },
-    ]);
+    Alert.alert("사진 삭제", "정말로 이 사진을 삭제하시겠습니까?", [{ text: "취소", style: "cancel" }, {
+      text: "삭제", onPress: () => {
+        setImages(images.filter((image) => image !== uri));
+      }, style: "destructive",
+    }]);
   };
 
   const handleSave = () => {
@@ -117,49 +111,45 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
   };
 
   const handleDelete = () => {
-    Alert.alert("작업 삭제", "정말로 이 작업을 삭제하시겠습니까?", [
-      { text: "취소", style: "cancel" },
-      {
-        text: "삭제",
-        onPress: () => {
-          onDelete(task.id);
-          onClose();
-        },
-        style: "destructive",
-      },
-    ]);
+    Alert.alert("작업 삭제", "정말로 이 작업을 삭제하시겠습니까?", [{ text: "취소", style: "cancel" }, {
+      text: "삭제", onPress: () => {
+        onDelete(task.id);
+        onClose();
+      }, style: "destructive",
+    }]);
   };
 
-  return (
-    <Modal visible={visible} transparent animationType="fade">
+  return (<Modal visible={visible} transparent animationType="fade">
       <ModalContainer>
         <ModalContent>
           <DateText>{date}</DateText>
           <View style={{ display: "flex", flexDirection: "row" }}>
-            <Input maxLength={1} value={icon} onChangeText={setIcon} placeholder="아이콘" />
+            <Input maxLength={1} value={icon} onChangeText={setIcon} placeholder="📝" />
             <Input style={{ flex: 1 }} value={title} onChangeText={setTitle} placeholder="제목" />
           </View>
-          <ScrollView horizontal style={{ marginBottom: 10 }}>
+          <ScrollView horizontal>
             <View style={{ flexDirection: "row" }}>
-              {images.map((imageUri) => (
-                <TouchableOpacity key={imageUri} onPress={() => handleDeleteImage(imageUri)}>
+              {images.map((imageUri) => (<TouchableOpacity style={{ marginBottom: 10 }} key={imageUri}
+                                                           onPress={() => handleDeleteImage(imageUri)}>
                   <Image source={{ uri: imageUri }} style={{ width: 100, height: 100, margin: 5 }} />
-                </TouchableOpacity>
-              ))}
+                </TouchableOpacity>))}
             </View>
           </ScrollView>
           <Input
             value={journal}
             onChangeText={setJournal}
             placeholder="오늘의 하루를 기록해 보세요!"
-            style={{ width: "100%", height: 150 }}
+            style={{ width: "100%", height: 150, textAlignVertical: "top" }}
             multiline
             numberOfLines={4}
           />
-          <View style={{ direction: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+          <View
+            style={{ direction: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
               <AddPictureButton onPress={pickImage} />
-              <Text style={{fontFamily: 'SpoqaHanSansNeo-Light', fontSize: 12, marginLeft: 5}}>{` ${images.length}/3`}</Text>
+              <Text style={{
+                fontFamily: "SpoqaHanSansNeo-Light", fontSize: 12, marginLeft: 5,
+              }}>{` ${images.length}/3`}</Text>
             </View>
             <View style={{ flexDirection: "row" }}>
               <DeleteButton onPress={handleDelete}>
@@ -172,8 +162,7 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
           </View>
         </ModalContent>
       </ModalContainer>
-    </Modal>
-  );
+    </Modal>);
 };
 
 export default DoneTaskModal;
