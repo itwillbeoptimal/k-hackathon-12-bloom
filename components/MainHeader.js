@@ -22,30 +22,24 @@ const HeaderIcons = styled.View`
     flex-direction: row;
 `;
 
-const ShopButton = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const ShopButton = ({ onPress }) => (<TouchableOpacity onPress={onPress}>
     <View style={{ marginRight: 15 }}>
       <ShopIcon />
     </View>
-  </TouchableOpacity>
-);
+  </TouchableOpacity>);
 
-const UserInfoButton = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const UserInfoButton = ({ onPress }) => (<TouchableOpacity onPress={onPress}>
     <View>
       <UserInfoIcon />
     </View>
-  </TouchableOpacity>
-);
+  </TouchableOpacity>);
 
-const MainHeader = () => (
-  <HeaderContainer>
+const MainHeader = () => (<HeaderContainer>
     <HeaderText>OO님, 안녕하세요!</HeaderText>
     <HeaderIcons>
       <ShopButton />
       <UserInfoButton />
     </HeaderIcons>
-  </HeaderContainer>
-);
+  </HeaderContainer>);
 
 export default MainHeader;

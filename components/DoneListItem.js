@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 
 const QuestItemContainer = styled.TouchableOpacity`
@@ -25,8 +24,8 @@ const TaskTitle = styled.Text`
     flex: 10;
 `;
 
-const DoneListItem = ({ icon, title }) => (
-  <QuestItemContainer>
+const DoneListItem = ({ icon, title, onPress }) => (
+  <QuestItemContainer onPress={onPress}>
     <TaskIcon>{icon}</TaskIcon>
     <TaskTitle>{title}</TaskTitle>
   </QuestItemContainer>

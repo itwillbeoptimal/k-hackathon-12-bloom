@@ -35,21 +35,17 @@ const QuestCount = styled.Text`
     margin-horizontal: 8px;
 `;
 
-const MinusButton = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const MinusButton = ({ onPress }) => (<TouchableOpacity onPress={onPress}>
     <View>
       <MinusIcon />
     </View>
-  </TouchableOpacity>
-);
+  </TouchableOpacity>);
 
-const PlusButton = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const PlusButton = ({ onPress }) => (<TouchableOpacity onPress={onPress}>
     <View>
       <PlusIcon />
     </View>
-  </TouchableOpacity>
-);
+  </TouchableOpacity>);
 
 const QuestItem = ({ icon, title, initialCount, hasCounter = false }) => {
   const [count, setCount] = useState(initialCount);
@@ -66,23 +62,19 @@ const QuestItem = ({ icon, title, initialCount, hasCounter = false }) => {
     }
   };
 
-  return (
-    <QuestItemContainer>
-      <View style={{ width: 45, alignItems: 'center' }}>
+  return (<QuestItemContainer>
+      <View style={{ width: 45, alignItems: "center" }}>
         <QuestIconContainer>
           {icon}
         </QuestIconContainer>
       </View>
       <QuestTitle>{title}</QuestTitle>
-      {hasCounter && (
-        <QuestCountContainer>
+      {hasCounter && (<QuestCountContainer>
           <MinusButton onPress={handleDecrease} />
           <QuestCount>{count}</QuestCount>
           <PlusButton onPress={handleIncrease} />
-        </QuestCountContainer>
-      )}
-    </QuestItemContainer>
-  );
+        </QuestCountContainer>)}
+    </QuestItemContainer>);
 };
 
 export default QuestItem;

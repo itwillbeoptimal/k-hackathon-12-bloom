@@ -41,8 +41,7 @@ const ProgressBar = styled.View`
 
 const ProgressFill = styled(LinearGradient).attrs(props => ({
   colors: props.colors || ["#00C0FF", "#5558FF"], // 기본 그라데이션 색상
-  start: { x: 0.3, y: 0 },
-  end: { x: 1, y: 0 },
+  start: { x: 0.3, y: 0 }, end: { x: 1, y: 0 },
 }))`
     width: ${props => props.fill}%;
     height: 100%;
@@ -56,44 +55,40 @@ const ProgressText = styled.Text`
     font-size: 12px;
 `;
 
-const Progress = ({ todayFlowerIcon }) => (
-  <ProgressContainer style={{justifyContent: "space-between"}}>
-    <CurrentFlowerContainer>
-      <CurrentFlowerHeader>
-        <View style={{ flex: 1, alignItems: "flex-start" }}>
-          {todayFlowerIcon}
-        </View>
-        {/*<View style={{flex: 1, alignItems: "flex-end"}}>*/}
-        {/*  {todayFlowerIcon}*/}
-        {/*</View>*/}
-      </CurrentFlowerHeader>
-      <View style={{ marginBottom: 20 }}>
-        <Sprout2Vector width={65} />
+const Progress = ({ todayFlowerIcon }) => (<ProgressContainer style={{ justifyContent: "space-between" }}>
+  <CurrentFlowerContainer>
+    <CurrentFlowerHeader>
+      <View style={{ flex: 1, alignItems: "flex-start" }}>
+        {todayFlowerIcon}
       </View>
-      <ProgressBar>
-        <ProgressFill fill={75} />
-      </ProgressBar>
-    </CurrentFlowerContainer>
-    <CircularProgress
-      size={150}
-      width={10}
-      fill={20}
-      tintColor="#3354F4"
-      backgroundColor="#e0e0e0"
-      rotation={0}
-    >
-      {() => (
-        <>
-          <ProgressText style={{ color: "#3F3F3F" }}>
-            데일리 퀘스트{"\n"}완료 보상
-          </ProgressText>
-          <ProgressText style={{ marginTop: 4, fontFamily: 'SpoqaHanSansNeo-Medium', fontSize: 24, color: "#3F3F3F" }}>
-            1/5
-          </ProgressText>
-        </>
-      )}
-    </CircularProgress>
-  </ProgressContainer>
-);
+      {/*<View style={{flex: 1, alignItems: "flex-end"}}>*/}
+      {/*  {todayFlowerIcon}*/}
+      {/*</View>*/}
+    </CurrentFlowerHeader>
+    <View style={{ marginBottom: 20 }}>
+      <Sprout2Vector width={65} />
+    </View>
+    <ProgressBar>
+      <ProgressFill fill={75} />
+    </ProgressBar>
+  </CurrentFlowerContainer>
+  <CircularProgress
+    size={150}
+    width={10}
+    fill={20}
+    tintColor="#3354F4"
+    backgroundColor="#e0e0e0"
+    rotation={0}
+  >
+    {() => (<>
+      <ProgressText style={{ color: "#3F3F3F" }}>
+        데일리 퀘스트{"\n"}완료 보상
+      </ProgressText>
+      <ProgressText style={{ marginTop: 4, fontFamily: "SpoqaHanSansNeo-Medium", fontSize: 24, color: "#3F3F3F" }}>
+        1/5
+      </ProgressText>
+    </>)}
+  </CircularProgress>
+</ProgressContainer>);
 
 export default Progress;

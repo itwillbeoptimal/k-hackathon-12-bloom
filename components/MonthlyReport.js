@@ -3,8 +3,8 @@ import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
-import BackIcon from '../assets/buttons/back.svg'
-import ForwardIcon from '../assets/buttons/forward.svg'
+import BackIcon from "../assets/buttons/back.svg";
+import ForwardIcon from "../assets/buttons/forward.svg";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(() => {
@@ -30,16 +30,12 @@ const Calendar = () => {
 
       if (isCurrentMonth) {
         const iconName = getIconForDay(dayNumber);
-        const isToday = dayNumber === today.getDate() &&
-          currentDate.getMonth() === today.getMonth() &&
-          currentDate.getFullYear() === today.getFullYear();
+        const isToday = dayNumber === today.getDate() && currentDate.getMonth() === today.getMonth() && currentDate.getFullYear() === today.getFullYear();
 
-        days.push(
-          <DayContainer key={i} isToday={isToday}>
-            <DayText isToday={isToday}>{dayNumber}</DayText>
-            <Icon name={iconName} size={20} color="#000" />
-          </DayContainer>,
-        );
+        days.push(<DayContainer key={i} isToday={isToday}>
+          <DayText isToday={isToday}>{dayNumber}</DayText>
+          <Icon name={iconName} size={20} color="#000" />
+        </DayContainer>);
       } else {
         days.push(<EmptyDayContainer key={i} />);
       }
@@ -54,8 +50,7 @@ const Calendar = () => {
     return icons[day] || "circle-small";
   };
 
-  return (
-    <Shadow
+  return (<Shadow
       startColor="rgba(0, 0, 0, 0.03)"
       finalColor="rgba(0, 0, 0, 0.01)"
       offset={[4, 4]}
@@ -64,11 +59,11 @@ const Calendar = () => {
     >
       <Container>
         <Header>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
+          <View style={{ display: "flex", flexDirection: "row" }}>
             <MonthText>{`${currentDate.getMonth() + 1}월`}</MonthText>
             <YearText>{`${currentDate.getFullYear()}`}</YearText>
           </View>
-          <View style={{display: 'flex', flexDirection: 'row'}}>
+          <View style={{ display: "flex", flexDirection: "row" }}>
             <ArrowButton
               onPress={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}>
               <BackIcon />
@@ -80,16 +75,13 @@ const Calendar = () => {
           </View>
         </Header>
         <WeekDaysContainer>
-          {weekDays.map(day => (
-            <WeekDayText key={day}>{day}</WeekDayText>
-          ))}
+          {weekDays.map(day => (<WeekDayText key={day}>{day}</WeekDayText>))}
         </WeekDaysContainer>
         <CalendarGrid>
           {renderDays()}
         </CalendarGrid>
       </Container>
-    </Shadow>
-  );
+    </Shadow>);
 };
 
 const Container = styled.View`
@@ -157,7 +149,7 @@ const DayContainer = styled.View`
 
 const DayText = styled.Text`
     color: #3F3F3F;
-    font-family: ${props => props.isToday ? 'SpoqaHanSansNeo-Medium' : 'SpoqaHanSansNeo-Light'};
+    font-family: ${props => props.isToday ? "SpoqaHanSansNeo-Medium" : "SpoqaHanSansNeo-Light"};
     font-size: 16px;
     margin-bottom: 5px;
     color: ${props => props.isToday ? "#0066cc" : "#000"};

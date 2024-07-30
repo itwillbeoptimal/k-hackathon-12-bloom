@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity, View } from "react-native";
 import CalendarIcon from "../assets/buttons/calendar.svg";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const HeaderContainer = styled.View`
     flex-direction: row;
@@ -22,13 +22,11 @@ const HeaderIcons = styled.View`
     flex-direction: row;
 `;
 
-const CalendarButton = ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
+const CalendarButton = ({ onPress }) => (<TouchableOpacity onPress={onPress}>
     <View style={{ marginRight: 0 }}>
       <CalendarIcon />
     </View>
-  </TouchableOpacity>
-);
+  </TouchableOpacity>);
 
 const DiaryHeader = ({ date, setDate }) => {
   const [showPicker, setShowPicker] = React.useState(false);
@@ -40,29 +38,25 @@ const DiaryHeader = ({ date, setDate }) => {
     setShowPicker(false);
 
     if (date > currentDate) {
-      alert('미래 날짜는 선택할 수 없습니다.');
+      alert("미래 날짜는 선택할 수 없습니다.");
     } else {
       setDate(date);
     }
   };
 
-  return (
-    <HeaderContainer>
+  return (<HeaderContainer>
       <HeaderText>{date}</HeaderText>
       <HeaderIcons>
         <CalendarButton onPress={() => setShowPicker(true)} />
-        {showPicker && (
-          <DateTimePicker
+        {showPicker && (<DateTimePicker
             value={currentDate}
             mode="date"
             display="default"
             onChange={onChange}
             maximumDate={currentDate}
-          />
-        )}
+          />)}
       </HeaderIcons>
-    </HeaderContainer>
-  );
+    </HeaderContainer>);
 };
 
 export default DiaryHeader;
