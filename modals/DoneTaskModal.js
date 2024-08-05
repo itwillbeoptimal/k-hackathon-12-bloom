@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Text, Modal, View, Image, Alert, TouchableOpacity, ScrollView } from "react-native";
+import { Text, Modal, View, Image, Alert, TouchableOpacity, ScrollView, TextInput } from "react-native";
 import styled from "styled-components/native";
 import { launchImageLibrary } from "react-native-image-picker";
 import AddPictureButton from "../assets/buttons/add_picture.svg";
+import emojiRegex from 'emoji-regex';
+
+const isSingleEmoji = (text) => {
+  const regex = emojiRegex();
+  const matches = text.match(regex);
+  return matches && matches.length === 1 && matches[0] === text;
+};
 
 const ModalContainer = styled.View`
     flex: 1;
@@ -27,7 +34,7 @@ const DateText = styled.Text`
     margin-bottom: 5px;
 `;
 
-const Input = styled.TextInput`
+const Input = styled(TextInput)`
     border: none;
     padding: 10px;
     font-family: 'SpoqaHanSansNeo-Light';
@@ -82,7 +89,8 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
     }
 
     const options = {
-      mediaType: "photo", quality: 1,
+      mediaType: "photo",
+      quality: 1,
     };
 
     launchImageLibrary(options, (response) => {
@@ -98,11 +106,16 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
   };
 
   const handleDeleteImage = (uri) => {
-    Alert.alert("사진 삭제", "정말로 이 사진을 삭제하시겠습니까?", [{ text: "취소", style: "cancel" }, {
-      text: "삭제", onPress: () => {
-        setImages(images.filter((image) => image !== uri));
-      }, style: "destructive",
-    }]);
+    Alert.alert("사진 삭제", "정말로 이 사진을 삭제하시겠습니까?", [
+      { text: "취소", style: "cancel" },
+      {
+        text: "삭제",
+        onPress: () => {
+          setImages(images.filter((image) => image !== uri));
+        },
+        style: "destructive",
+      },
+    ]);
   };
 
   const handleSave = () => {
@@ -111,28 +124,55 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
   };
 
   const handleDelete = () => {
-    Alert.alert("작업 삭제", "정말로 이 작업을 삭제하시겠습니까?", [{ text: "취소", style: "cancel" }, {
-      text: "삭제", onPress: () => {
-        onDelete(task.id);
-        onClose();
-      }, style: "destructive",
-    }]);
+    Alert.alert("작업 삭제", "정말로 이 작업을 삭제하시겠습니까?", [
+      { text: "취소", style: "cancel" },
+      {
+        text: "삭제",
+        onPress: () => {
+          onDelete(task.id);
+          onClose();
+        },
+        style: "destructive",
+      },
+    ]);
   };
 
-  return (<Modal visible={visible} transparent animationType="fade">
+  const handleIconChange = (text) => {
+    if (isSingleEmoji(text) || text === "") {
+      setIcon(text);
+    }
+  };
+
+  return (
+    <Modal visible={visible} transparent animationType="fade">
       <ModalContainer>
         <ModalContent>
           <DateText>{date}</DateText>
           <View style={{ display: "flex", flexDirection: "row" }}>
-            <Input maxLength={1} value={icon} onChangeText={setIcon} placeholder="📝" />
-            <Input style={{ flex: 1 }} value={title} onChangeText={setTitle} placeholder="제목" />
+            <Input
+              value={icon}
+              onChangeText={handleIconChange}
+              placeholder="📝"
+              style={{ width: 40, textAlign: 'center' }}
+            />
+            <Input
+              style={{ flex: 1 }}
+              value={title}
+              onChangeText={setTitle}
+              placeholder="제목"
+            />
           </View>
           <ScrollView horizontal>
             <View style={{ flexDirection: "row" }}>
-              {images.map((imageUri) => (<TouchableOpacity style={{ marginBottom: 10 }} key={imageUri}
-                                                           onPress={() => handleDeleteImage(imageUri)}>
+              {images.map((imageUri) => (
+                <TouchableOpacity
+                  style={{ marginBottom: 10 }}
+                  key={imageUri}
+                  onPress={() => handleDeleteImage(imageUri)}
+                >
                   <Image source={{ uri: imageUri }} style={{ width: 100, height: 100, margin: 5 }} />
-                </TouchableOpacity>))}
+                </TouchableOpacity>
+              ))}
             </View>
           </ScrollView>
           <Input
@@ -144,12 +184,13 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
             numberOfLines={4}
           />
           <View
-            style={{ direction: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+            style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '100%' }}
+          >
             <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
               <AddPictureButton onPress={pickImage} />
-              <Text style={{
-                fontFamily: "SpoqaHanSansNeo-Light", fontSize: 12, marginLeft: 5,
-              }}>{` ${images.length}/3`}</Text>
+              <Text style={{ fontFamily: "SpoqaHanSansNeo-Light", fontSize: 12, marginLeft: 5 }}>
+                {` ${images.length}/3`}
+              </Text>
             </View>
             <View style={{ flexDirection: "row" }}>
               <DeleteButton onPress={handleDelete}>
@@ -162,7 +203,8 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
           </View>
         </ModalContent>
       </ModalContainer>
-    </Modal>);
+    </Modal>
+  );
 };
 
 export default DoneTaskModal;
