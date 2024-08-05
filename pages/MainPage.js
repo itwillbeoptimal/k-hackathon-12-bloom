@@ -8,7 +8,7 @@ import WaterIcon from "../assets/icons/quest_icons/water.svg";
 import StretchIcon from "../assets/icons/quest_icons/stretch.svg";
 import WalkIcon from "../assets/icons/quest_icons/walk.svg";
 import PrioritizeIcon from "../assets/icons/quest_icons/prioritize.svg";
-import TulipIcon from "../assets/icons/flower_icons/tulip.svg";
+import TulipIcon from "../assets/icons/flower_icons/tulip-small.svg";
 
 const Container = styled(View)`
     flex: 1;
