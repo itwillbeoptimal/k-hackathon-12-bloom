@@ -86,7 +86,7 @@ const Calendar = () => {
         days.push(
           <DayContainer key={i} isToday={isToday}>
             <DayText isToday={isToday}>{dayNumber}</DayText>
-            <View style={{height: 26, justifyContent: "center"}}>
+            <View style={{height: 25, justifyContent: "center"}}>
               {IconComponent && <IconComponent />}
             </View>
           </DayContainer>

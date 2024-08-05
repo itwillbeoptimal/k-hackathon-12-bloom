@@ -40,7 +40,7 @@ const BarContainer = styled.View`
 const Bar = styled.View`
     width: 30px;
     border-radius: 5px 5px 0 0;
-    background-color: ${props => props.isHighest ? "#4A90E2" : "#E0E0E0"};
+    background-color: ${props => props.isHighest ? "#4A90E2" : "#eee"};
 `;
 
 const BarLabel = styled.Text`
