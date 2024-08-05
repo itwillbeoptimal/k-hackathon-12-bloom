@@ -137,7 +137,7 @@ const Calendar = () => {
         </CalendarGrid>
       </Container>
       <View style={{marginTop: 20}}>
-        <Button title="Set Dummy Icons Data" onPress={setDummyIconsData} />
+        <Button title="Set Dummy Data" onPress={setDummyIconsData} />
       </View>
     </Shadow>
   );

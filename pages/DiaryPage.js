@@ -235,7 +235,7 @@ const DiaryPage = () => {
               <AddTaskIcon>➕</AddTaskIcon>
               <AddTaskTitle>오늘 한 일 추가</AddTaskTitle>
             </AddTaskButton>
-            <Button title="Set Dummy Icons Data" onPress={initializeDummyData} />
+            <Button title="Set Dummy Data" onPress={initializeDummyData} />
           </DoneList>
         </ScrollView>
         <DoneTaskModal
