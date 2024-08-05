@@ -39,6 +39,7 @@ const TodayQuestion = ({ questionDetail }) => (<View>
             letterSpacing: -1,
             marginTop: 25,
             alignSelf: "center",
+            height: 52
           }}>{questionDetail}</Text>
           <WriteButton />
         </View>
