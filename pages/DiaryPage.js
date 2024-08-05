@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import DiaryHeader from "../components/DiaryHeader";
 import TodayQuestion from "../components/TodayQuestion";
+import TodaySaying from "../components/TodaySaying";
 import DoneListItem from "../components/DoneListItem";
 import DoneTaskModal from "../modals/DoneTaskModal";
 
@@ -50,9 +51,14 @@ const AddTaskTitle = styled.Text`
 `;
 
 const dummyQuestions = {
-  "2024-07-29": "최근에 몰두하고 있는 일이나,\n몰두해서 했던 일이 있나요?",
-  "2024-07-30": "일주일 내 가장 기뻤던\n 순간은 무엇인가요?",
+  "2024-07-29": "최근에 몰두하고 있는 일이나, 몰두해서 했던 일이 있나요?",
+  "2024-07-30": "일주일 내 가장 기뻤던 순간은 무엇인가요?",
 };
+
+const dummySayings = {
+  "2024-07-29": "실패가 나태함에 대한 유일한 징벌은 아니다. 다른 이들의 성공도 있지 않은가.",
+  "2024-07-30": "지식이 없는 성실은 허약하고 쓸모 없다. 성실이 없는 지식은 위험하고 두려운 것이다.",
+}
 
 const dummyTasks = {
   "2024-07-29": [
@@ -87,6 +93,7 @@ const DiaryPage = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [doneTasks, setDoneTasks] = useState([]);
   const [todayQuestion, setTodayQuestion] = useState("");
+  const [todaySaying, setTodaySaying] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
 
@@ -120,6 +127,19 @@ const DiaryPage = () => {
       console.error("Failed to fetch question from server:", error);
       console.log("Using dummy data for question");
       setTodayQuestion(dummyQuestions[localDate] || "오늘의 질문이 없습니다.");
+    }
+  };
+
+  const fetchSaying = async (date) => {
+    const localDate = getLocalDateString(date);
+
+    try {
+      const response = await axios.get(`/api/saying/${localDate}`);
+      setTodayQuestion(response.data.saying);
+    } catch (error) {
+      console.error("Failed to fetch saying from server:", error);
+      console.log("Using dummy data for saying");
+      setTodaySaying(dummySayings[localDate] || "오늘의 명언이 없습니다.");
     }
   };
 
@@ -188,6 +208,7 @@ const DiaryPage = () => {
   useEffect(() => {
     fetchTasks(currentDate);
     fetchQuestion(currentDate);
+    fetchSaying(currentDate)
   }, [currentDate]);
 
   return (
@@ -196,7 +217,10 @@ const DiaryPage = () => {
         <StatusBar barStyle="dark-content" />
         <DiaryHeader date={formatDate(currentDate)} setDate={setCurrentDate} />
         <ScrollView>
-          <TodayQuestion questionDetail={todayQuestion} />
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <TodayQuestion questionDetail={todayQuestion} />
+            <TodaySaying sayingDetail={todaySaying}/>
+          </ScrollView>
           <DoneList>
             <MenuTitle>던 리스트</MenuTitle>
             {doneTasks.map(task => (
