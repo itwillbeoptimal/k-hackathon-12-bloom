@@ -6,7 +6,7 @@ import MainHeader from "../components/MainHeader";
 import Progress from "../components/Progress";
 import QuestItem from "../components/QuestItem";
 import QuestSelectionModal from "../modals/QuestSelectionModal";
-import iconMap from "../assets/icons/iconMap"; // 새로운 파일의 경로를 적어주세요
+import iconMap from "../assets/icons/iconMap";
 
 const Container = styled(View)`
     flex: 1;
