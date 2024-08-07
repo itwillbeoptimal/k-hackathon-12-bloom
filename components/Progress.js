@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, View } from "react-native";
 import styled from "styled-components/native";
 import { CircularProgress } from "react-native-circular-progress";
 import LinearGradient from "react-native-linear-gradient";
-import SeedVector from "../assets/icons/flower_icons/seed.svg";
-import Sprout1Vector from "../assets/icons/flower_icons/sprout1.svg";
-import Sprout2Vector from "../assets/vectors/sprout2.svg";
-import TulipVector from "../assets/icons/flower_icons/tulip.svg";
+import iconMap from "../assets/icons/iconMap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CurrentFlowerContainer = styled.View`
@@ -73,15 +70,30 @@ const ButtonText = styled.Text`
     font-size: 16px;
 `;
 
-const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
+const Progress = ({ todayFlowerTitle, dailyQuestProgress }) => {
   const [level, setLevel] = useState(0);
-  const [currentIcon, setCurrentIcon] = useState(<SeedVector width={30} height={30} />);
+  const [currentIcon, setCurrentIcon] = useState(iconMap.seed);
   const [experience, setExperience] = useState(0);
   const [lastWatered, setLastWatered] = useState(null);
 
-  const levelIcons = [<SeedVector width={30} height={30} />, <Sprout1Vector width={60} height={60} />,
-    <Sprout2Vector width={60} height={60} />, <TulipVector width={60} height={60} />];
   const levelThresholds = [0, 2, 5, 9];
+
+  const flowerPreviewIcons = {
+    tulip: iconMap.tulip_p,
+    sunflower: iconMap.sunflower_p,
+  };
+
+  const flowerIcons = {
+    tulip: iconMap.tulip,
+    sunflower: iconMap.sunflower,
+  };
+
+  const levelIcons = [
+    iconMap.seed,
+    iconMap.sprout1,
+    iconMap.sprout2,
+    flowerIcons[todayFlowerTitle] || iconMap.seed
+  ];
 
   useEffect(() => {
     const loadStoredData = async () => {
@@ -147,7 +159,7 @@ const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
         <CurrentFlowerContainer>
           <CurrentFlowerHeader>
             <View style={{ flex: 1, alignItems: "flex-start" }}>
-              {todayFlowerIcon}
+              {flowerPreviewIcons[todayFlowerTitle]}
             </View>
           </CurrentFlowerHeader>
           <View style={{ marginBottom: 20, height: 60, justifyContent: "center" }}>

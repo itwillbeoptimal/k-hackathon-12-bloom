@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Modal, View, TouchableOpacity, Text, ScrollView } from "react-native";
 import styled from "styled-components/native";
-import WaterIcon from "../assets/icons/quest_icons/water.svg";
-import StretchIcon from "../assets/icons/quest_icons/stretch.svg";
-import WalkIcon from "../assets/icons/quest_icons/walk.svg";
-import PrioritizeIcon from "../assets/icons/quest_icons/prioritize.svg";
-import TulipIcon from "../assets/icons/flower_icons/tulip-small.svg";
+import iconMap from "../assets/icons/iconMap";
 
 const Container = styled(View)`
     flex: 1;
@@ -60,14 +56,15 @@ const QuestSelectionModal = ({ visible, onClose, onConfirm }) => {
   const [step, setStep] = useState(1);
 
   const allQuests = [
-    { id: 1, icon: <WaterIcon />, title: "물 여덟 잔 마시기", iconType: "water", count: 8, hasCounter: true },
-    { id: 2, icon: <StretchIcon />, title: "스트레칭 세 번 하기", iconType: "stretch", count: 3, hasCounter: true },
-    { id: 3, icon: <WalkIcon />, title: "3,000 걸음 이상 걷기", iconType: "walk", count: -1, hasCounter: false },
-    { id: 4, icon: <PrioritizeIcon />, title: "할 일의 우선 순위 정하기", iconType: "prioritize", count: -1, hasCounter: false }
+    { id: 1, iconType: "water", title: "물 여덟 잔 마시기", count: 8, hasCounter: true },
+    { id: 2, iconType: "stretch", title: "스트레칭 세 번 하기", count: 3, hasCounter: true },
+    { id: 3, iconType: "walk", title: "3,000 걸음 이상 걷기", count: -1, hasCounter: false },
+    { id: 4, iconType: "prioritize", title: "할 일의 우선 순위 정하기", count: -1, hasCounter: false }
   ];
 
   const flowers = [
-    { id: 1, icon: <TulipIcon />, title: "튤립", iconType: "tulip" }
+    { id: 1, iconType: "tulip", title: "튤립" },
+    { id: 2, iconType: "sunflower", title: "해바라기" }
   ];
 
   const handleQuestSelect = (quest) => {
@@ -118,7 +115,7 @@ const QuestSelectionModal = ({ visible, onClose, onConfirm }) => {
                     onPress={() => handleQuestSelect(quest)}
                   >
                     <View style={{width: 35, alignItems: "center"}}>
-                      {quest.icon}
+                      {iconMap[quest.iconType]}
                     </View>
                     <ItemTitle>{quest.title}</ItemTitle>
                   </Item>
@@ -139,7 +136,7 @@ const QuestSelectionModal = ({ visible, onClose, onConfirm }) => {
                     selected={selectedFlower && selectedFlower.id === flower.id}
                     onPress={() => handleFlowerSelect(flower)}
                   >
-                    {flower.icon}
+                    {iconMap[(flower.iconType)+'_p']}
                     <ItemTitle>{flower.title}</ItemTitle>
                   </Item>
                 ))}
