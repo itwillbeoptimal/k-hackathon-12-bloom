@@ -117,7 +117,9 @@ const QuestSelectionModal = ({ visible, onClose, onConfirm }) => {
                     selected={selectedQuests.some(q => q.id === quest.id)}
                     onPress={() => handleQuestSelect(quest)}
                   >
-                    {quest.icon}
+                    <View style={{width: 35, alignItems: "center"}}>
+                      {quest.icon}
+                    </View>
                     <ItemTitle>{quest.title}</ItemTitle>
                   </Item>
                 ))}

@@ -73,7 +73,7 @@ const MainPage = () => {
       hasCounter: quest.hasCounter
     }));
     setQuests(questsToSave);
-    setTodayFlowerIcon(selectedFlower.icon);
+    setTodayFlowerIcon(iconMap[selectedFlower.iconType]);
     saveQuests(questsToSave);
     saveFlower(selectedFlower);
     setModalVisible(false);

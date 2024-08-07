@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Text, Alert } from "react-native";
+import { View, Alert } from "react-native";
 import styled from "styled-components/native";
 import { CircularProgress } from "react-native-circular-progress";
 import LinearGradient from "react-native-linear-gradient";
@@ -9,7 +9,6 @@ import Sprout2Vector from "../assets/vectors/sprout2.svg";
 import TulipVector from "../assets/icons/flower_icons/tulip.svg";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Styled Components
 const CurrentFlowerContainer = styled.View`
     width: 48%;
     aspect-ratio: 1/1;
@@ -75,19 +74,16 @@ const ButtonText = styled.Text`
 `;
 
 const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
-  // 상태 정의
   const [level, setLevel] = useState(0);
   const [currentIcon, setCurrentIcon] = useState(<SeedVector width={30} height={30} />);
   const [experience, setExperience] = useState(0);
   const [lastWatered, setLastWatered] = useState(null);
 
-  // 레벨 및 아이콘 설정
   const levelIcons = [<SeedVector width={30} height={30} />, <Sprout1Vector width={60} height={60} />,
     <Sprout2Vector width={60} height={60} />, <TulipVector width={60} height={60} />];
   const levelThresholds = [0, 2, 5, 9];
 
   useEffect(() => {
-    // 저장된 데이터 로드
     const loadStoredData = async () => {
       try {
         const storedExperience = await AsyncStorage.getItem('@experience');
@@ -100,11 +96,10 @@ const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
           setLastWatered(parseInt(storedLastWatered, 10) || null);
         }
 
-        // 하루가 지났다면 경험치 초기화
         const now = new Date().getTime();
         if (storedLastWatered) {
           const lastWateredDate = new Date(parseInt(storedLastWatered, 10));
-          if (now - lastWateredDate.getTime() >= 86400000) { // 24시간
+          if (now - lastWateredDate.getTime() >= 86400000) {
             setExperience(0);
             await AsyncStorage.setItem('@experience', '0');
           }
@@ -118,13 +113,11 @@ const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
   }, []);
 
   useEffect(() => {
-    // 레벨 계산
     let newLevel = levelThresholds.findIndex(threshold => experience < threshold) - 1;
     if (newLevel < 0) newLevel = levelThresholds.length - 1;
     setLevel(newLevel);
     setCurrentIcon(levelIcons[newLevel]);
 
-    // 경험치가 변경될 때마다 AsyncStorage에 저장
     AsyncStorage.setItem('@experience', experience.toString());
   }, [experience]);
 
@@ -133,7 +126,7 @@ const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
 
   const handleWaterButtonClick = async () => {
     const now = new Date().getTime();
-    if (lastWatered === null || (now - lastWatered) >= 3600000) { // 1시간
+    if (lastWatered === null || (now - lastWatered) >= 3600000) {
       setExperience(prevExperience => {
         const newExperience = prevExperience + 1;
         const finalExperience = newExperience < (levelThresholds[level + 2] || Infinity) ? newExperience : prevExperience;
