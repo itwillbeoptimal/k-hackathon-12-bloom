@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { View, Alert } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, View } from "react-native";
 import styled from "styled-components/native";
 import { CircularProgress } from "react-native-circular-progress";
 import LinearGradient from "react-native-linear-gradient";
@@ -7,7 +7,7 @@ import SeedVector from "../assets/icons/flower_icons/seed.svg";
 import Sprout1Vector from "../assets/icons/flower_icons/sprout1.svg";
 import Sprout2Vector from "../assets/vectors/sprout2.svg";
 import TulipVector from "../assets/icons/flower_icons/tulip.svg";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const CurrentFlowerContainer = styled.View`
     width: 48%;
@@ -121,16 +121,18 @@ const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
     AsyncStorage.setItem('@experience', experience.toString());
   }, [experience]);
 
+  const clampedExperience = Math.max(experience, 0);
   const experienceNeeded = levelThresholds[level + 1] || Infinity;
-  const experienceFill = ((experience - levelThresholds[level]) / (experienceNeeded - levelThresholds[level])) * 100;
+  const experienceFill = level === levelThresholds.length - 1
+    ? 100
+    : ((clampedExperience - levelThresholds[level]) / (experienceNeeded - levelThresholds[level])) * 100;
 
   const handleWaterButtonClick = async () => {
     const now = new Date().getTime();
     if (lastWatered === null || (now - lastWatered) >= 3600000) {
       setExperience(prevExperience => {
-        const newExperience = prevExperience + 1;
-        const finalExperience = newExperience < (levelThresholds[level + 2] || Infinity) ? newExperience : prevExperience;
-        return finalExperience;
+        const newExperience = Math.max(prevExperience + 1, 0);
+        return newExperience < (levelThresholds[level + 2] || Infinity) ? newExperience : prevExperience;
       });
       setLastWatered(now);
       await AsyncStorage.setItem('@lastWatered', now.toString());
@@ -187,10 +189,10 @@ const Progress = ({ todayFlowerIcon, dailyQuestProgress }) => {
                      disabled={lastWatered && (new Date().getTime() - lastWatered) < 3600000}>
           <ButtonText>물주기</ButtonText>
         </WaterButton>
-        <WaterButton onPress={() => setExperience(prevExperience => prevExperience + 1)}>
+        <WaterButton onPress={() => setExperience(prevExperience => Math.max(prevExperience + 1, 0))}>
           <ButtonText>경험치 +1</ButtonText>
         </WaterButton>
-        <WaterButton onPress={() => setExperience(prevExperience => prevExperience - 1)}>
+        <WaterButton onPress={() => setExperience(prevExperience => Math.max(prevExperience - 1, 0))}>
           <ButtonText>경험치 -1</ButtonText>
         </WaterButton>
       </View>
