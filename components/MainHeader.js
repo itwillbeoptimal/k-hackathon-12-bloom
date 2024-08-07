@@ -35,7 +35,7 @@ const UserInfoButton = ({ onPress }) => (<TouchableOpacity onPress={onPress}>
   </TouchableOpacity>);
 
 const MainHeader = () => (<HeaderContainer>
-    <HeaderText>OO님, 안녕하세요!</HeaderText>
+    <HeaderText>지훈님, 안녕하세요!</HeaderText>
     <HeaderIcons>
       <ShopButton />
       <UserInfoButton />
