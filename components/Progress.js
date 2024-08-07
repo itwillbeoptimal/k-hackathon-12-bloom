@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { Alert, View } from "react-native";
 import styled from "styled-components/native";
 import { CircularProgress } from "react-native-circular-progress";
@@ -41,8 +41,7 @@ const ProgressBar = styled.View`
 `;
 
 const ProgressFill = styled(LinearGradient).attrs(props => ({
-  colors: props.colors || ["#00C0FF", "#5558FF"],
-  start: { x: 0.3, y: 0 }, end: { x: 1, y: 0 },
+  colors: props.colors || ["#00C0FF", "#5558FF"], start: { x: 0.3, y: 0 }, end: { x: 1, y: 0 },
 }))`
     width: ${props => props.fill}%;
     height: 100%;
@@ -70,7 +69,7 @@ const ButtonText = styled.Text`
     font-size: 16px;
 `;
 
-const Progress = ({ todayFlowerTitle, dailyQuestProgress }) => {
+const Progress = forwardRef(({ todayFlowerTitle, totalCount, completedCount }, ref) => {
   const [level, setLevel] = useState(0);
   const [currentIcon, setCurrentIcon] = useState(iconMap.seed);
   const [experience, setExperience] = useState(0);
@@ -79,27 +78,20 @@ const Progress = ({ todayFlowerTitle, dailyQuestProgress }) => {
   const levelThresholds = [0, 2, 5, 9];
 
   const flowerPreviewIcons = {
-    tulip: iconMap.tulip_p,
-    sunflower: iconMap.sunflower_p,
+    tulip: iconMap.tulip_p, sunflower: iconMap.sunflower_p,
   };
 
   const flowerIcons = {
-    tulip: iconMap.tulip,
-    sunflower: iconMap.sunflower,
+    tulip: iconMap.tulip, sunflower: iconMap.sunflower,
   };
 
-  const levelIcons = [
-    iconMap.seed,
-    iconMap.sprout1,
-    iconMap.sprout2,
-    flowerIcons[todayFlowerTitle] || iconMap.seed
-  ];
+  const levelIcons = [iconMap.seed, iconMap.sprout1, iconMap.sprout2, flowerIcons[todayFlowerTitle] || iconMap.seed];
 
   useEffect(() => {
     const loadStoredData = async () => {
       try {
-        const storedExperience = await AsyncStorage.getItem('@experience');
-        const storedLastWatered = await AsyncStorage.getItem('@lastWatered');
+        const storedExperience = await AsyncStorage.getItem("@experience");
+        const storedLastWatered = await AsyncStorage.getItem("@lastWatered");
 
         if (storedExperience !== null) {
           setExperience(parseInt(storedExperience, 10) || 0);
@@ -113,7 +105,7 @@ const Progress = ({ todayFlowerTitle, dailyQuestProgress }) => {
           const lastWateredDate = new Date(parseInt(storedLastWatered, 10));
           if (now - lastWateredDate.getTime() >= 86400000) {
             setExperience(0);
-            await AsyncStorage.setItem('@experience', '0');
+            await AsyncStorage.setItem("@experience", "0");
           }
         }
       } catch (e) {
@@ -130,31 +122,39 @@ const Progress = ({ todayFlowerTitle, dailyQuestProgress }) => {
     setLevel(newLevel);
     setCurrentIcon(levelIcons[newLevel]);
 
-    AsyncStorage.setItem('@experience', experience.toString());
+    AsyncStorage.setItem("@experience", experience.toString());
   }, [experience]);
 
   const clampedExperience = Math.max(experience, 0);
   const experienceNeeded = levelThresholds[level + 1] || Infinity;
-  const experienceFill = level === levelThresholds.length - 1
-    ? 100
-    : ((clampedExperience - levelThresholds[level]) / (experienceNeeded - levelThresholds[level])) * 100;
+  const experienceFill = level === levelThresholds.length - 1 ? 100 : ((clampedExperience - levelThresholds[level]) / (experienceNeeded - levelThresholds[level])) * 100;
 
   const handleWaterButtonClick = async () => {
     const now = new Date().getTime();
     if (lastWatered === null || (now - lastWatered) >= 3600000) {
       setExperience(prevExperience => {
         const newExperience = Math.max(prevExperience + 1, 0);
-        return newExperience < (levelThresholds[level + 2] || Infinity) ? newExperience : prevExperience;
+        return newExperience < 10 ? newExperience : prevExperience;
       });
       setLastWatered(now);
-      await AsyncStorage.setItem('@lastWatered', now.toString());
+      await AsyncStorage.setItem("@lastWatered", now.toString());
     } else {
-      Alert.alert("물주기 알림", "물주기는 한 시간에 한 번만 가능합니다.");
+      Alert.alert("알림", "물주기는 한 시간에 한 번만 가능합니다.");
     }
   };
 
-  return (
-    <>
+  const increaseExperience = () => {
+    setExperience(prevExperience => {
+      const newExperience = Math.max(prevExperience + 1, 0);
+      return newExperience < 10 ? newExperience : prevExperience;
+    });
+  };
+
+  useImperativeHandle(ref, () => ({
+    increaseExperience,
+  }));
+
+  return (<>
       <ProgressContainer style={{ justifyContent: "space-between" }}>
         <CurrentFlowerContainer>
           <CurrentFlowerHeader>
@@ -172,44 +172,39 @@ const Progress = ({ todayFlowerTitle, dailyQuestProgress }) => {
         <CircularProgress
           size={150}
           width={10}
-          fill={dailyQuestProgress}
+          fill={completedCount / totalCount * 100}
           tintColor="#3354F4"
           backgroundColor="#e0e0e0"
           rotation={0}
         >
-          {() => (
-            <>
+          {() => (<>
               <ProgressText style={{ color: "#3F3F3F" }}>
                 데일리 퀘스트{"\n"}완료 보상
               </ProgressText>
               <ProgressText
-                style={{ marginTop: 4, fontFamily: "SpoqaHanSansNeo-Medium", fontSize: 24, color: "#3F3F3F" }}>
-                {dailyQuestProgress}/100
+                style={{
+                  marginTop: 4, fontFamily: "SpoqaHanSansNeo-Medium", fontSize: 24, color: "#3F3F3F", letterSpacing: -2,
+                }}>
+                {completedCount} / {totalCount}
               </ProgressText>
-            </>
-          )}
+            </>)}
         </CircularProgress>
       </ProgressContainer>
-      <View style={{
-        paddingLeft: 20,
-        paddingRight: 20,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-      }}>
-        <WaterButton onPress={handleWaterButtonClick}
-                     disabled={lastWatered && (new Date().getTime() - lastWatered) < 3600000}>
-          <ButtonText>물주기</ButtonText>
-        </WaterButton>
-        <WaterButton onPress={() => setExperience(prevExperience => Math.max(prevExperience + 1, 0))}>
-          <ButtonText>경험치 +1</ButtonText>
-        </WaterButton>
-        <WaterButton onPress={() => setExperience(prevExperience => Math.max(prevExperience - 1, 0))}>
-          <ButtonText>경험치 -1</ButtonText>
-        </WaterButton>
-      </View>
-    </>
-  );
-};
+      {/*<View style={{*/}
+      {/*  paddingLeft: 20, paddingRight: 20, display: "flex", flexDirection: "row", justifyContent: "space-between",*/}
+      {/*}}>*/}
+      {/*  <WaterButton onPress={handleWaterButtonClick}*/}
+      {/*               disabled={lastWatered && (new Date().getTime() - lastWatered) < 3600000}>*/}
+      {/*    <ButtonText>물주기</ButtonText>*/}
+      {/*  </WaterButton>*/}
+      {/*  <WaterButton onPress={() => increaseExperience()}>*/}
+      {/*    <ButtonText>경험치 +1</ButtonText>*/}
+      {/*  </WaterButton>*/}
+      {/*  <WaterButton onPress={() => setExperience(prevExperience => Math.max(prevExperience - 1, 0))}>*/}
+      {/*    <ButtonText>경험치 -1</ButtonText>*/}
+      {/*  </WaterButton>*/}
+      {/*</View>*/}
+    </>);
+});
 
 export default Progress;
