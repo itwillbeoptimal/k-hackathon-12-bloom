@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Text, Modal, View, Image, Alert, TouchableOpacity, ScrollView, TextInput } from "react-native";
+import React, { useState, useEffect, useCallback } from "react";
+import { Text, Modal, View, Image, Alert, TouchableOpacity, ScrollView, TextInput, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components/native";
 import { launchImageLibrary } from "react-native-image-picker";
 import AddPictureButton from "../assets/buttons/add_picture.svg";
-import emojiRegex from 'emoji-regex';
+import emojiRegex from "emoji-regex";
 
 const isSingleEmoji = (text) => {
   const regex = emojiRegex();
@@ -72,13 +72,22 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
   const [title, setTitle] = useState("새로운 작업");
   const [journal, setJournal] = useState("");
   const [images, setImages] = useState([]);
+  const [initialState, setInitialState] = useState({});
+  const [isModified, setIsModified] = useState(false);
 
   useEffect(() => {
     if (task) {
-      setIcon(task.icon || "📝");
-      setTitle(task.title || "새로운 작업");
-      setJournal(task.journal || "");
-      setImages(task.images || []);
+      const initial = {
+        icon: task.icon || "📝",
+        title: task.title || "새로운 작업",
+        journal: task.journal || "",
+        images: task.images || [],
+      };
+      setIcon(initial.icon);
+      setTitle(initial.title);
+      setJournal(initial.journal);
+      setImages(initial.images);
+      setInitialState(initial);
     }
   }, [task]);
 
@@ -101,6 +110,7 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
       } else if (response.assets && response.assets.length > 0) {
         const source = { uri: response.assets[0].uri };
         setImages([...images, source.uri]);
+        setIsModified(true); // 변경사항 플래그 설정
       }
     });
   };
@@ -112,6 +122,7 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
         text: "삭제",
         onPress: () => {
           setImages(images.filter((image) => image !== uri));
+          setIsModified(true); // 변경사항 플래그 설정
         },
         style: "destructive",
       },
@@ -120,6 +131,8 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
 
   const handleSave = () => {
     onSave({ id: task?.id, icon, title, journal, images });
+    setInitialState({ icon, title, journal, images });
+    setIsModified(false); // 변경사항 저장 후 플래그 리셋
     onClose();
   };
 
@@ -140,69 +153,112 @@ const DoneTaskModal = ({ visible, onClose, task, onSave, onDelete, date }) => {
   const handleIconChange = (text) => {
     if (isSingleEmoji(text) || text === "") {
       setIcon(text);
+      setIsModified(true); // 변경사항 플래그 설정
     }
   };
 
+  const handleModalClose = useCallback(() => {
+    if (
+      icon !== initialState.icon ||
+      title !== initialState.title ||
+      journal !== initialState.journal ||
+      images.length !== initialState.images.length
+    ) {
+      Alert.alert(
+        "변경사항 저장",
+        "변경사항이 저장되지 않았습니다. 그래도 닫으시겠습니까?",
+        [
+          { text: "취소", style: "cancel" },
+          { text: "닫기", onPress: () => {
+              // 변경사항 롤백
+              setIcon(initialState.icon);
+              setTitle(initialState.title);
+              setJournal(initialState.journal);
+              setImages(initialState.images);
+              setIsModified(false); // 변경사항 플래그 리셋
+              onClose();
+            }, style: "destructive" }
+        ]
+      );
+    } else {
+      onClose();
+    }
+  }, [icon, title, journal, images, initialState, onClose]);
+
   return (
     <Modal visible={visible} transparent animationType="fade">
-      <ModalContainer>
-        <ModalContent>
-          <DateText>{date}</DateText>
-          <View style={{ display: "flex", flexDirection: "row" }}>
-            <Input
-              value={icon}
-              onChangeText={handleIconChange}
-              placeholder="📝"
-              style={{ width: 40, textAlign: 'center' }}
-            />
-            <Input
-              style={{ flex: 1 }}
-              value={title}
-              onChangeText={setTitle}
-              placeholder="제목"
-            />
-          </View>
-          <ScrollView horizontal>
-            <View style={{ flexDirection: "row" }}>
-              {images.map((imageUri) => (
-                <TouchableOpacity
-                  style={{ marginBottom: 10 }}
-                  key={imageUri}
-                  onPress={() => handleDeleteImage(imageUri)}
-                >
-                  <Image source={{ uri: imageUri }} style={{ width: 100, height: 100, margin: 5 }} />
-                </TouchableOpacity>
-              ))}
-            </View>
-          </ScrollView>
-          <Input
-            value={journal}
-            onChangeText={setJournal}
-            placeholder="오늘의 하루를 기록해 보세요!"
-            style={{ width: "100%", height: 150, textAlignVertical: "top" }}
-            multiline
-            numberOfLines={4}
-          />
-          <View
-            style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: '100%' }}
-          >
-            <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
-              <AddPictureButton onPress={pickImage} />
-              <Text style={{ fontFamily: "SpoqaHanSansNeo-Light", fontSize: 12, marginLeft: 5 }}>
-                {` ${images.length}/3`}
-              </Text>
-            </View>
-            <View style={{ flexDirection: "row" }}>
-              <DeleteButton onPress={handleDelete}>
-                <DeleteButtonText>삭제</DeleteButtonText>
-              </DeleteButton>
-              <SaveButton onPress={handleSave}>
-                <SaveButtonText>저장</SaveButtonText>
-              </SaveButton>
-            </View>
-          </View>
-        </ModalContent>
-      </ModalContainer>
+      <TouchableWithoutFeedback onPress={handleModalClose}>
+        <ModalContainer>
+          <TouchableWithoutFeedback>
+            <ModalContent>
+              <View style={{ display: "flex", flexDirection: "row", alignItems: "center", width: "100%", marginBottom: 10 }}>
+                <View style={{ flex: 1, alignItems: "center" }}>
+                  <DateText>{date}</DateText>
+                </View>
+              </View>
+              <View style={{ display: "flex", flexDirection: "row", marginBottom: 10 }}>
+                <Input
+                  value={icon}
+                  onChangeText={handleIconChange}
+                  placeholder="📝"
+                  style={{ width: 40, textAlign: "center" }}
+                />
+                <Input
+                  style={{ flex: 1 }}
+                  value={title}
+                  onChangeText={(text) => {
+                    setTitle(text);
+                    setIsModified(true); // 변경사항 플래그 설정
+                  }}
+                  placeholder="제목"
+                />
+              </View>
+              <ScrollView horizontal>
+                <View style={{ flexDirection: "row" }}>
+                  {images.map((imageUri) => (
+                    <TouchableOpacity
+                      style={{ marginBottom: 10 }}
+                      key={imageUri}
+                      onPress={() => handleDeleteImage(imageUri)}
+                    >
+                      <Image source={{ uri: imageUri }} style={{ width: 100, height: 100, margin: 5 }} />
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </ScrollView>
+              <Input
+                value={journal}
+                onChangeText={(text) => {
+                  setJournal(text);
+                  setIsModified(true); // 변경사항 플래그 설정
+                }}
+                placeholder="오늘의 하루를 기록해 보세요!"
+                style={{ width: "100%", height: 150, textAlignVertical: "top" }}
+                multiline
+                numberOfLines={4}
+              />
+              <View
+                style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", width: "100%" }}
+              >
+                <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
+                  <AddPictureButton onPress={pickImage} />
+                  <Text style={{ fontFamily: "SpoqaHanSansNeo-Light", fontSize: 12, marginLeft: 5 }}>
+                    {` ${images.length}/3`}
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <DeleteButton onPress={handleDelete}>
+                    <DeleteButtonText>삭제</DeleteButtonText>
+                  </DeleteButton>
+                  <SaveButton onPress={handleSave}>
+                    <SaveButtonText>저장</SaveButtonText>
+                  </SaveButton>
+                </View>
+              </View>
+            </ModalContent>
+          </TouchableWithoutFeedback>
+        </ModalContainer>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };
