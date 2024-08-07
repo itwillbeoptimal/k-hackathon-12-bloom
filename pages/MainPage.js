@@ -40,7 +40,7 @@ const ButtonText = styled(Text)`
 
 const MainPage = () => {
   const [quests, setQuests] = useState([]);
-  const [todayFlowerIcon, setTodayFlowerIcon] = useState(<></>);
+  const [todayFlowerTitle, setTodayFlowerTitle] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const MainPage = () => {
         const storedFlower = await AsyncStorage.getItem('@flower');
         if (storedFlower !== null) {
           const flower = JSON.parse(storedFlower);
-          setTodayFlowerIcon(iconMap[flower.iconType]);
+          setTodayFlowerTitle(flower.iconType);
         }
       } catch (e) {
         console.error(e);
@@ -73,7 +73,7 @@ const MainPage = () => {
       hasCounter: quest.hasCounter
     }));
     setQuests(questsToSave);
-    setTodayFlowerIcon(iconMap[selectedFlower.iconType]);
+    setTodayFlowerTitle(selectedFlower.iconType);
     saveQuests(questsToSave);
     saveFlower(selectedFlower);
     setModalVisible(false);
@@ -103,7 +103,7 @@ const MainPage = () => {
         <StatusBar barStyle="dark-content" />
         <ScrollView>
           <MainHeader />
-          <Progress todayFlowerIcon={todayFlowerIcon} />
+          <Progress todayFlowerTitle={todayFlowerTitle} dailyQuestProgress={50} />
           <QuestList>
             <MenuTitle>
               데일리 퀘스트
